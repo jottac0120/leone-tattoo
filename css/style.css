@@ -1,0 +1,2089 @@
+/* =====================================================
+   LEONE TATTOO — Base Stylesheet
+   Editorial / Premium / Black & Grey Realism
+   ===================================================== */
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, h1, h2, h3, h4, p, figure, ul, ol, li { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Colors */
+  --color-black: #0a0a09;
+  --color-ink: #050504;
+  --color-charcoal: #131211;
+  --color-charcoal-light: #1c1a18;
+  --color-white: #f2eee6;
+  --color-bone: #d8d2c6;
+  --color-grey: #8f887c;
+  --color-grey-dim: #5c564d;
+  --color-hairline: rgba(242, 238, 230, 0.1);
+  --color-skin: #b98d6f;
+
+  /* Typography */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Manrope', -apple-system, sans-serif;
+
+  /* Fluid type scale */
+  --fs-hero: clamp(3.2rem, 12vw, 9.5rem);
+  --fs-h2: clamp(2.1rem, 6vw, 4.4rem);
+  --fs-lede: clamp(1.05rem, 2vw, 1.35rem);
+  --fs-body: 1rem;
+  --fs-label: 0.78rem;
+
+  /* Spacing */
+  --section-pad: clamp(5rem, 12vw, 10rem);
+  --container-pad: clamp(1.5rem, 5vw, 4rem);
+  --container-max: 1360px;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* subtle grain overlay for cinematic texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section { position: relative; padding-block: var(--section-pad); }
+
+a:focus-visible, button:focus-visible {
+  outline: 1px solid var(--color-white);
+  outline-offset: 4px;
+}
+
+/* ---------- Typography Helpers ---------- */
+.label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+  margin-bottom: 1.5rem;
+}
+.label--light { color: var(--color-bone); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+.lede {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--fs-lede);
+  color: var(--color-bone);
+  max-width: 46ch;
+  margin-top: 1.5rem;
+}
+.lede--center { margin-inline: auto; }
+
+.section-head--center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.05rem 2.4rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-white);
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+}
+
+.btn-primary {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+.btn-primary:hover { background: transparent; color: var(--color-white); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-white);
+  border-color: var(--color-hairline);
+}
+.btn-secondary:hover { border-color: var(--color-white); }
+
+.btn-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.3rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  border: 1px solid var(--color-hairline);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.btn-header:hover { border-color: var(--color-white); background: rgba(242, 238, 230, 0.05); }
+
+/* =====================================================
+   HEADER / NAV
+   ===================================================== */
+.site-header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 9, 0.88);
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 84px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+.logo span {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.32em;
+  color: var(--color-grey);
+  font-weight: 600;
+}
+
+.main-nav {
+  display: flex;
+  gap: clamp(1.2rem, 2.5vw, 2.6rem);
+}
+.main-nav a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  position: relative;
+  padding-block: 0.3rem;
+}
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--color-skin);
+  transition: right 0.35s ease;
+}
+.main-nav a:hover { color: var(--color-white); }
+.main-nav a:hover::after { right: 0; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 26px;
+}
+.nav-toggle span {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: var(--color-white);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* =====================================================
+   HERO
+   Composição editorial assimétrica: foto real (assets/works/02.jpg,
+   já usada no Portfólio/Narrativa) ancorada à direita com transição para
+   preto à esquerda, onde fica o texto. A aproximação de câmera pelo scroll
+   é feita em js/app.js (GSAP/ScrollTrigger); esta folha só define a
+   composição estática/base e o fallback sem JS.
+   ===================================================== */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--color-black);
+  padding-block: 0;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* O vídeo É o fundo do Hero (100% da área, object-fit:cover) — não uma foto estática
+   nem um recorte pequeno. Sem filter/brightness/opacity animados por cima em momento
+   algum: é exibido exatamente como foi gravado. Reprodução 100% autônoma via atributos
+   HTML (autoplay/loop/muted/playsinline, ver index.html) — nenhum JS controla currentTime
+   ou aplica scale/pan por scroll (isso existia só para o vídeo antigo e foi removido). */
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    var(--color-black) 0%,
+    rgba(10, 10, 9, 0.94) 24%,
+    rgba(10, 10, 9, 0.62) 46%,
+    rgba(10, 10, 9, 0.18) 68%,
+    transparent 85%
+  );
+}
+.hero-photo-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(5, 5, 4, 0.5), transparent 55%);
+  opacity: 0.5;
+  will-change: opacity;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 620px;
+  will-change: transform, opacity;
+}
+
+.hero-eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  margin-bottom: 1.6rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3.4rem, 8.5vw, 7.2rem);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+.hero-title .line { display: block; }
+.hero-title-sub {
+  font-size: 0.4em;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--color-bone);
+  margin-top: 0.4em;
+}
+
+.hero-tag {
+  display: inline-block;
+  margin-top: 2rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--color-hairline);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-skin);
+}
+
+.hero-tagline {
+  margin-top: 1.6rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2.3vw, 1.65rem);
+  color: var(--color-bone);
+}
+.hero-tagline em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 2.8rem;
+}
+.hero-ctas .btn svg { margin-right: 0.55rem; }
+
+.hero-side {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.hero-side--left {
+  left: var(--container-pad);
+  bottom: clamp(2.5rem, 6vh, 4rem);
+}
+.hero-side-line { width: 26px; height: 1px; background: var(--color-grey-dim); }
+.hero-values {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+
+.hero-side--right {
+  right: clamp(1.2rem, 3vw, 2.4rem);
+  top: 50%;
+  transform: translateY(-50%);
+  flex-direction: column;
+}
+.hero-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: var(--color-grey-dim);
+}
+.hero-index li.is-active { color: var(--color-white); }
+
+.hero-statement {
+  position: absolute;
+  z-index: 3;
+  right: var(--container-pad);
+  bottom: clamp(4.5rem, 10vh, 6rem);
+  max-width: 220px;
+  text-align: right;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bone);
+  opacity: 0;
+}
+
+.scroll-cue {
+  position: absolute;
+  z-index: 3;
+  bottom: clamp(1.5rem, 4vw, 3rem);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.scroll-line {
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(var(--color-grey-dim), transparent);
+}
+.scroll-text {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+
+
+/* =====================================================
+   SOBRE — apresentação editorial do Patrick
+   ===================================================== */
+.sobre {
+  position: relative;
+  overflow: hidden;
+  /* Preto puro pedido explicitamente (#000000), não a variável --color-charcoal (#131211,
+     um cinza-carvão bem escuro mas não preto) nem --color-black (#0a0a09, quase-preto) —
+     só esta seção usa o hex literal, o resto do site continua com as variáveis normais. */
+  background: #000000;
+}
+
+/* Foto à esquerda, texto à direita, em 12 colunas: foto = 1-5, coluna 6 vira respiro entre
+   os dois, texto = 7-12. No mobile (ver @media abaixo) empilha com a foto primeiro. */
+.artist-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  column-gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* max-width limita a altura da foto a ~88% da viewport (0.631 = proporção real do arquivo,
+   996x1579) — em telas baixas a foto encolhe junto, sem cortar nem deformar; em telas altas
+   o limite passa a ser a largura da coluna. */
+.artist-photo-col {
+  grid-column: 1 / 6;
+  position: relative;
+  width: 100%;
+  max-width: calc(88vh * 0.631);
+  justify-self: center;
+}
+/* Recorte com fundo transparente, exibido como veio: sem filtro, sem borda, sem moldura,
+   sem recorte de conteúdo. A única "integração" é a máscara que desfaz suavemente a borda
+   INFERIOR — o quadro original corta o corpo ali, e sem o fade o corte reto ficaria
+   estranho contra o fundo preto. width:100% + height:auto preservam a proporção. */
+.artist-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 84%, transparent 100%);
+}
+
+.artist-text-col { grid-column: 7 / 13; }
+
+.artist-name {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 4.6vw, 4.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+  text-wrap: balance;
+}
+
+.artist-body { margin-top: 1.8rem; }
+/* Levemente maior/mais espaçado e um tom mais claro que --color-bone (sem chegar a
+   branco puro) só pra melhorar a leitura. */
+.artist-body p { color: #e1dcd1; font-size: 1.05rem; line-height: 1.75; max-width: 54ch; }
+.artist-body p + p { margin-top: 1.1rem; }
+
+/* Destaques editoriais (não são cards): valor grande em serifada + legenda pequena, presos
+   a um fio de hairline por cima — 2x2. O hover só clareia o fio e o valor, bem de leve. */
+.artist-highlights {
+  margin-top: clamp(2rem, 3.5vw, 2.8rem);
+  max-width: 34rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem clamp(1.5rem, 3vw, 2.5rem);
+}
+.artist-highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--color-hairline);
+  transition: border-color 0.5s ease;
+}
+.artist-highlight-value {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.35rem, 2.1vw, 1.8rem);
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  transition: color 0.5s ease;
+}
+.artist-highlight-label {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+@media (hover: hover) and (pointer: fine) {
+  .artist-highlight:hover { border-top-color: rgba(242, 238, 230, 0.4); }
+  .artist-highlight:hover .artist-highlight-value { color: #ffffff; }
+}
+
+/* Entrada única quando a seção aparece na viewport (ver js/app.js) — sem loop, sem
+   repetição. IMPORTANTE: o estado "oculto" só existe sob .sobre-anim-ready, uma classe que
+   o PRÓPRIO JS adiciona depois de confirmar que consegue observar a seção e disparar a
+   revelação. Sem JS (ou se IntersectionObserver não existir, ou com prefers-reduced-motion),
+   essa classe nunca é adicionada e o conteúdo fica sempre visível e parado. Foto e texto
+   sobem/aparecem de leve; a foto também "assenta" de scale 1.03 -> 1 (profundidade sutil);
+   os 4 destaques entram em sequência via animation (não via transition, para o delay da
+   entrada não atrasar o hover depois). */
+.sobre-anim-ready .artist-text-col,
+.sobre-anim-ready .artist-photo-col {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.sobre-anim-ready .artist-text-col { transition-delay: 0.14s; }
+.sobre-anim-ready .artist-photo {
+  transform: scale(1.03);
+  transform-origin: 50% 100%;
+  transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+.sobre-anim-ready .artist-highlight { opacity: 0; }
+
+.sobre-anim-ready.is-visible .artist-text-col,
+.sobre-anim-ready.is-visible .artist-photo-col {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sobre-anim-ready.is-visible .artist-photo { transform: scale(1); }
+.sobre-anim-ready.is-visible .artist-highlight { animation: sobre-rise 0.7s ease both; }
+.sobre-anim-ready.is-visible .artist-highlight:nth-child(1) { animation-delay: 0.5s; }
+.sobre-anim-ready.is-visible .artist-highlight:nth-child(2) { animation-delay: 0.6s; }
+.sobre-anim-ready.is-visible .artist-highlight:nth-child(3) { animation-delay: 0.7s; }
+.sobre-anim-ready.is-visible .artist-highlight:nth-child(4) { animation-delay: 0.8s; }
+@keyframes sobre-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* =====================================================
+   ESPECIALIDADE
+   ===================================================== */
+/* Preto puro (#000000) pedido explicitamente, igual a .sobre/.portfolio — não a variável
+   --color-black (#0a0a09, quase-preto mas não literal). Só esta seção usa o hex literal. */
+.especialidade { background: #000000; }
+
+.feature-list { margin-top: clamp(3rem, 6vw, 5rem); border-top: 1px solid var(--color-hairline); }
+
+.feature-item {
+  display: grid;
+  grid-template-columns: 90px 1fr 1.4fr;
+  align-items: baseline;
+  gap: clamp(1rem, 3vw, 3rem);
+  padding-block: 1.8rem;
+  border-bottom: 1px solid var(--color-hairline);
+}
+
+.feature-number {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.4rem;
+  color: var(--color-grey-dim);
+}
+
+.feature-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+.feature-desc {
+  color: var(--color-grey);
+  font-size: 0.95rem;
+  max-width: 42ch;
+}
+
+/* =====================================================
+   EXPERIÊNCIA CINEMATOGRÁFICA
+   ===================================================== */
+.experiencia { background: var(--color-ink); }
+
+.narrative-acts {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fumaça atmosférica — só existe dentro de #narrative-acts: overflow:hidden acima
+   garante que nunca vaze para Especialidade (antes) nem Portfólio (depois), mesmo com
+   os blurs pesados abaixo (blur é sempre recortado pelo overflow:hidden do ancestral).
+   Cada camada combina VÁRIOS radial-gradient assimétricos (elipses de tamanhos/centros
+   diferentes, nunca um único círculo) com blur pesado para bordas difusas e formato
+   orgânico. Tons: cinza escuro (base/sombra), cinza médio (corpo) e cinza-prata claro
+   (pontos de destaque) — nunca branco puro. mix-blend-mode:screen funde com o fundo
+   escuro em vez de "colar" um retângulo por cima. Camadas bem maiores que a seção
+   (170% de largura, 140vh de altura) para a borda do próprio elemento nunca aparecer —
+   só o degradê suave. Estáticas sem JS/scroll: opacity:0 por padrão (ver js/app.js). */
+.smoke-layer {
+  position: absolute;
+  left: -35%;
+  width: 170%;
+  height: 140vh;
+  top: -70vh;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+.smoke-back {
+  background:
+    radial-gradient(55% 40% at 20% 30%, rgba(196, 196, 200, 0.22), transparent 68%),
+    radial-gradient(45% 55% at 75% 45%, rgba(120, 118, 114, 0.2), transparent 70%),
+    radial-gradient(60% 35% at 45% 72%, rgba(30, 28, 26, 0.6), transparent 74%),
+    radial-gradient(28% 22% at 85% 18%, rgba(150, 150, 152, 0.14), transparent 64%);
+  filter: blur(85px);
+}
+.smoke-main {
+  background:
+    radial-gradient(48% 38% at 35% 32%, rgba(200, 200, 204, 0.3), transparent 66%),
+    radial-gradient(40% 46% at 70% 55%, rgba(120, 116, 110, 0.26), transparent 68%),
+    radial-gradient(52% 30% at 50% 62%, rgba(18, 17, 16, 0.65), transparent 70%),
+    radial-gradient(24% 20% at 18% 65%, rgba(190, 190, 194, 0.18), transparent 60%);
+  filter: blur(60px);
+}
+.smoke-front {
+  background:
+    radial-gradient(34% 26% at 55% 45%, rgba(205, 206, 210, 0.26), transparent 62%),
+    radial-gradient(28% 32% at 28% 55%, rgba(130, 128, 124, 0.22), transparent 62%),
+    radial-gradient(22% 17% at 72% 28%, rgba(210, 212, 216, 0.2), transparent 58%),
+    radial-gradient(30% 24% at 45% 75%, rgba(24, 22, 21, 0.4), transparent 66%);
+  filter: blur(42px);
+}
+
+.narrative-act {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+  padding-block: clamp(3rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--color-hairline);
+}
+.narrative-act:last-child { border-bottom: none; }
+
+.narrative-act--reverse { grid-template-columns: 1fr 1.3fr; }
+
+.narrative-media {
+  order: 1;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--color-charcoal-light);
+}
+.narrative-act--reverse .narrative-media { order: 2; }
+
+.narrative-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(35%) contrast(1.1) brightness(0.72);
+}
+
+.narrative-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 4, 0.5), transparent 55%);
+  pointer-events: none;
+}
+
+.narrative-caption {
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.narrative-act--reverse .narrative-caption {
+  order: 1;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.narrative-index {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-skin);
+}
+
+.narrative-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.narrative-close {
+  text-align: center;
+  padding-top: clamp(5rem, 10vw, 8rem);
+  padding-inline: var(--container-pad);
+}
+
+.narrative-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--color-white);
+  text-wrap: balance;
+}
+
+.narrative-credit {
+  margin-top: 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+
+/* =====================================================
+   PORTFÓLIO
+   ===================================================== */
+/* Preto puro (#000000) pedido explicitamente, igual ao usado em .sobre — não a variável
+   --color-charcoal (#131211, cinza-carvão escuro). Só esta seção usa o hex literal. */
+.portfolio { background: #000000; }
+
+.portfolio-grid {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-auto-rows: 8px;
+  /* dense: um item menor sobe para preencher o vão deixado ao lado de um destaque de 2
+     colunas, em vez de deixar um buraco vazio na galeria (ver comentário dos destaques). */
+  grid-auto-flow: row dense;
+  align-items: start;
+  gap: clamp(1.25rem, 2.5vw, 2.25rem);
+}
+
+.portfolio-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 220px;
+  text-align: left;
+  padding: 0;
+  overflow: hidden;
+  background: var(--color-charcoal-light);
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(18%) contrast(1.05) brightness(0.9);
+  transform: scale(1.001);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s ease;
+}
+
+.portfolio-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 5, 4, 0.6), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.portfolio-item-index {
+  position: absolute;
+  left: 1.4rem;
+  bottom: 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--color-white);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.portfolio-item:hover img,
+.portfolio-item:focus-visible img {
+  transform: scale(1.045);
+  filter: grayscale(0%) contrast(1.02) brightness(1);
+}
+.portfolio-item:hover::after,
+.portfolio-item:focus-visible::after { opacity: 1; }
+.portfolio-item:hover .portfolio-item-index,
+.portfolio-item:focus-visible .portfolio-item-index { opacity: 1; transform: translateY(0); }
+
+/* Composição editorial: alguns trabalhos ocupam 2 colunas, e QUAIS depende de quantas colunas
+   o grid tem no momento (auto-fill de 260px: 4 colunas a partir de ~1280px, 3 entre ~930 e
+   1279px, 2 entre ~641 e 929px, 1 no celular — onde nenhum destaque se aplica). Cada classe
+   --feat-Nc = "ocupa 2 colunas quando o grid tem N colunas". O conjunto de destaques de cada
+   faixa e a ORDEM das 13 fotos no HTML foram calculados juntos (simulando o posicionamento do
+   grid e o arredondamento de linhas do masonry em js/app.js) para fechar SEM vazios e com o
+   fim das colunas quase alinhado em todas as larguras. Se mexer nas classes ou na ordem do
+   HTML, isso precisa ser recalculado — senão podem reaparecer buracos. As larguras de troca
+   ficam alguns px fora do ponto exato de cada faixa por causa da barra de rolagem; nessa janela
+   pequena o pior caso é só um desnível maior no fim das colunas, nunca um buraco. */
+@media (min-width: 641px) and (max-width: 929px) {
+  .portfolio-item--feat-2c { grid-column: span 2; }
+}
+@media (min-width: 930px) and (max-width: 1279px) {
+  .portfolio-item--feat-3c { grid-column: span 2; }
+}
+@media (min-width: 1280px) {
+  .portfolio-item--feat-4c { grid-column: span 2; }
+}
+
+/* =====================================================
+   LIGHTBOX
+   ===================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: rgba(5, 5, 4, 0.97);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease;
+}
+.lightbox.is-open { opacity: 1; visibility: visible; }
+
+.lightbox-figure {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.lightbox-figure img {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
+}
+.lightbox-counter {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  color: var(--color-grey);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: clamp(1.2rem, 3vw, 2rem);
+  right: clamp(1.2rem, 3vw, 2rem);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--color-white);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.lightbox-close:hover { opacity: 1; }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  color: var(--color-white);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+.lightbox-nav:hover { opacity: 1; }
+.lightbox-prev { left: clamp(0.5rem, 3vw, 2rem); }
+.lightbox-next { right: clamp(0.5rem, 3vw, 2rem); }
+
+@media (max-width: 640px) {
+  .lightbox-nav { width: 42px; height: 42px; font-size: 1.8rem; }
+}
+
+/* =====================================================
+   05 — COMO FUNCIONA / O PROCESSO
+   Reconstruída do zero (implementação anterior removida por completo).
+   ===================================================== */
+/* A imagem única (processo-bg.png, 1672x941, os 4 quadros já compostos nela) é aplicada
+   UMA VEZ, diretamente em .process-section — nunca em cards individuais. aspect-ratio
+   trava a proporção real do arquivo em telas largas para as 4 partes da foto baterem com
+   as 4 colunas de texto sem cortes agressivos. */
+.process-section {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  min-height: 620px;
+  /* Correção pré-publicação: caminho relativo dentro de um arquivo CSS resolve relativo à
+     PRÓPRIA pasta do CSS (css/), não à raiz do site — "assets/..." apontava pra
+     css/assets/process/processo-bg.png, que não existe. Com "../" volta pra raiz do
+     projeto, onde o arquivo realmente está (assets/process/processo-bg.png, intocado). Sem
+     isso a imagem nunca carregava (nem no Windows local nem em produção) — o preto que
+     aparecia era a ausência da imagem, não a foto real. */
+  background-image: url("../assets/process/processo-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Escurece só o topo (legibilidade do título) e a base (legibilidade dos 4 processos) —
+   o centro da foto, onde está a ação, fica o mais claro possível. */
+.process-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 5, 4, 0.55) 0%,
+    rgba(5, 5, 4, 0.12) 20%,
+    rgba(5, 5, 4, 0.04) 38%,
+    rgba(5, 5, 4, 0.22) 55%,
+    rgba(5, 5, 4, 0.6) 100%
+  );
+  pointer-events: none;
+}
+/* Filetes de luz animados (independentes do scroll): os filetes brancos da foto são pixels
+   de processo-bg.png e continuam exatamente onde estão — este SVG só desenha um ponto de
+   luz (núcleo quente + brilho + halo difuso + cauda curta) percorrendo o MESMO trajeto,
+   da esquerda pra direita, e reiniciando pela esquerda. Cada trecho visível do filete é um
+   <g class="streak-seg--N"> com seu próprio @keyframes (ver abaixo), todos com a MESMA
+   duração (14.5s) e sem atraso — o loop dos 4 fica sincronizado e sem corte. Só CSS
+   animation: sem JS, sem scroll, sem IntersectionObserver.
+   Técnica: cada <path> tem pathLength="1" e o caminho está invertido (direita -> esquerda),
+   então um dash quase zero com round linecap vira um PONTO, e o dash longo logo depois
+   dele (a cauda) fica atrás do ponto quando ele anda da esquerda pra direita. O grupo anima
+   stroke-dashoffset (herdado por todos os paths) + opacity (fade-in/out nas pontas). */
+.process-streak {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.process-streak path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.streak-seg { opacity: 0; }
+
+.streak-halo { stroke: #e4eaf6; stroke-opacity: 0.22; stroke-width: 30; stroke-dasharray: 0.001 5; }
+.streak-glow { stroke: #f3f5fa; stroke-opacity: 0.5; stroke-width: 11; stroke-dasharray: 0.001 5; }
+.streak-tail--long { stroke: #eef1f7; stroke-opacity: 0.3; stroke-width: 1.1; stroke-dasharray: 0.001 0.001 0.17 5; }
+.streak-tail--mid { stroke: #ffffff; stroke-opacity: 0.55; stroke-width: 1.5; stroke-dasharray: 0.001 0.001 0.08 5; }
+.streak-core { stroke: #fff3d9; stroke-width: 3.2; stroke-dasharray: 0.001 5; }
+
+.streak-seg--1 { animation: streak-run-1 14.5s linear infinite; }
+.streak-seg--2 { animation: streak-run-2 14.5s linear infinite; }
+.streak-seg--3 { animation: streak-run-3 14.5s linear infinite; }
+.streak-seg--4 { animation: streak-run-4 14.5s linear infinite; }
+
+@keyframes streak-run-1 {
+  0%, 3.45% { stroke-dashoffset: -1.02; opacity: 0; }
+  4.2% { stroke-dashoffset: -0.967; opacity: 0.365; }
+  4.94% { stroke-dashoffset: -0.897; opacity: 1; }
+  5.69% { stroke-dashoffset: -0.812; opacity: 1; }
+  6.44% { stroke-dashoffset: -0.714; opacity: 1; }
+  7.18% { stroke-dashoffset: -0.607; opacity: 1; }
+  7.93% { stroke-dashoffset: -0.495; opacity: 1; }
+  8.68% { stroke-dashoffset: -0.383; opacity: 1; }
+  9.43% { stroke-dashoffset: -0.276; opacity: 1; }
+  10.17% { stroke-dashoffset: -0.178; opacity: 0.967; }
+  10.92% { stroke-dashoffset: -0.093; opacity: 0.445; }
+  11.67% { stroke-dashoffset: -0.023; opacity: 0.036; }
+  12.41%, 100% { stroke-dashoffset: 0.03; opacity: 0; }
+}
+
+@keyframes streak-run-2 {
+  0%, 21.38% { stroke-dashoffset: -1.02; opacity: 0; }
+  22.47% { stroke-dashoffset: -0.967; opacity: 0.071; }
+  23.56% { stroke-dashoffset: -0.897; opacity: 0.52; }
+  24.66% { stroke-dashoffset: -0.812; opacity: 0.99; }
+  25.75% { stroke-dashoffset: -0.714; opacity: 1; }
+  26.84% { stroke-dashoffset: -0.607; opacity: 1; }
+  27.93% { stroke-dashoffset: -0.495; opacity: 1; }
+  29.02% { stroke-dashoffset: -0.383; opacity: 1; }
+  30.11% { stroke-dashoffset: -0.276; opacity: 1; }
+  31.21% { stroke-dashoffset: -0.178; opacity: 0.967; }
+  32.3% { stroke-dashoffset: -0.093; opacity: 0.445; }
+  33.39% { stroke-dashoffset: -0.023; opacity: 0.036; }
+  34.48%, 100% { stroke-dashoffset: 0.03; opacity: 0; }
+}
+
+@keyframes streak-run-3 {
+  0%, 43.45% { stroke-dashoffset: -1.02; opacity: 0; }
+  44.37% { stroke-dashoffset: -0.967; opacity: 0; }
+  45.29% { stroke-dashoffset: -0.897; opacity: 0.082; }
+  46.21% { stroke-dashoffset: -0.812; opacity: 0.441; }
+  47.13% { stroke-dashoffset: -0.714; opacity: 0.884; }
+  48.05% { stroke-dashoffset: -0.607; opacity: 1; }
+  48.97% { stroke-dashoffset: -0.495; opacity: 1; }
+  49.89% { stroke-dashoffset: -0.383; opacity: 1; }
+  50.8% { stroke-dashoffset: -0.276; opacity: 1; }
+  51.72% { stroke-dashoffset: -0.178; opacity: 1; }
+  52.64% { stroke-dashoffset: -0.093; opacity: 0.985; }
+  53.56% { stroke-dashoffset: -0.023; opacity: 0.131; }
+  54.48%, 100% { stroke-dashoffset: 0.03; opacity: 0; }
+}
+
+@keyframes streak-run-4 {
+  0%, 63.45% { stroke-dashoffset: -1.02; opacity: 0; }
+  64.94% { stroke-dashoffset: -0.967; opacity: 0.047; }
+  66.44% { stroke-dashoffset: -0.897; opacity: 0.367; }
+  67.93% { stroke-dashoffset: -0.812; opacity: 0.847; }
+  69.43% { stroke-dashoffset: -0.714; opacity: 1; }
+  70.92% { stroke-dashoffset: -0.607; opacity: 1; }
+  72.41% { stroke-dashoffset: -0.495; opacity: 1; }
+  73.91% { stroke-dashoffset: -0.383; opacity: 1; }
+  75.4% { stroke-dashoffset: -0.276; opacity: 0.999; }
+  76.9% { stroke-dashoffset: -0.178; opacity: 0.699; }
+  78.39% { stroke-dashoffset: -0.093; opacity: 0.256; }
+  79.89% { stroke-dashoffset: -0.023; opacity: 0.019; }
+  81.38%, 100% { stroke-dashoffset: 0.03; opacity: 0; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .process-streak { display: none; }
+}
+
+/* position:absolute + inset:0 de propósito: este container NUNCA pode participar do
+   cálculo de altura de .process-section. Sem max-width/padding-inline/flex: .process-inner
+   é só uma camada 100% da seção — quem posiciona título e grid agora é cada um por si
+   (.process-header via position:absolute próprio, .process-grid via inset:0 próprio),
+   pra a grid poder ocupar exatamente a largura inteira da imagem, sem sobra lateral. */
+/* translateY sobe título + grid juntos, como um bloco rígido só — mantém a relação entre
+   os dois exatamente igual, sem tocar em posição horizontal, imagem ou colunas. */
+.process-inner {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  transform: translateY(-80px);
+}
+
+/* Centralizado no topo por conta própria — não participa da grid dos 4 processos, então
+   não pode interferir na largura/alinhamento das colunas. */
+.process-header {
+  position: absolute;
+  top: clamp(4rem, 8vh, 7rem);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90%;
+  text-align: center;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+  z-index: 5;
+}
+.process-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+  margin-bottom: 1.5rem;
+}
+.process-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+/* Grid ocupa exatamente os mesmos 100% x 100% da imagem, sem gap — as 4 colunas de 25%
+   encostam matematicamente uma na outra, batendo com as 4 partes da foto. Inteiramente
+   invisível: sem background/border próprios, os 4 processos não podem ler como cards. */
+.process-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  z-index: 3;
+}
+
+/* Cada item é só conteúdo: sem background, border ou box-shadow próprios. Mesma regra de
+   posicionamento nos 4 — a grid resolve o alinhamento, nada é cravado individualmente. */
+/* padding-bottom grande de propósito: sobe o bloco de texto pra dentro dos últimos ~20-30%
+   de cada área da foto, em vez de deixá-lo grudado na borda inferior da seção. */
+.process-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-width: 0;
+  gap: 0.9rem;
+  padding-left: clamp(1.5rem, 2.5vw, 3rem);
+  padding-right: clamp(1.5rem, 2.5vw, 3rem);
+  padding-bottom: clamp(8rem, 15vh, 11rem);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.65);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+/* Hover: o processo sob o mouse ganha destaque e os outros três escurecem de leve — a
+   foto de fundo nunca muda, nunca se move. */
+.process-grid:hover .process-item { opacity: 0.72; filter: brightness(0.88); }
+.process-grid:hover .process-item:hover {
+  opacity: 1;
+  filter: brightness(1.15);
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.8);
+}
+
+.process-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+  letter-spacing: 0.05em;
+  color: var(--color-skin);
+}
+
+/* Mesma escala do "nome" usado em outros cards editoriais do site (ver .studio-name),
+   para o título de cada processo ter destaque consistente com o resto da tipografia. */
+.process-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.process-text {
+  color: var(--color-bone);
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.55;
+  max-width: 85%;
+}
+
+/* =====================================================
+   ALÉM DA TATUAGEM
+   ===================================================== */
+.beyond { background: #000000; }
+
+/* Container próprio, mais largo que o .container padrão do site (max-width:1360px) — só o
+   cabeçalho da seção (título/lede, alguns parágrafos acima) continua no .container normal,
+   centralizado e estreito, como em qualquer outra seção. Aqui embaixo, onde ficam as
+   fotografias, ~90vw (com teto absoluto pra não ficar absurdo em monitor ultrawide) reduz o
+   excesso de preto nas laterais e dá presença editorial às imagens. padding-inline é só um
+   respiro fino pra nenhuma foto encostar exatamente na borda dessa faixa larga. */
+.beyond-chapters {
+  margin-top: clamp(4rem, 8vw, 6rem);
+  max-width: min(1760px, 90vw);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 2vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(6.5rem, 13vw, 11rem);
+}
+
+/* Reveal por capítulo (ver js/app.js): só existe estado oculto sob .beyond-anim-ready,
+   classe que o PRÓPRIO JS adiciona depois de confirmar que consegue observar a seção. Sem
+   JS/IntersectionObserver ou com prefers-reduced-motion essa classe nunca aparece e tudo
+   fica sempre visível e parado — igual ao padrão já usado em "Sobre". Cada peça do
+   capítulo (marcador, título, texto, fotos) revela em sequência, não tudo de uma vez. */
+.beyond-anim-ready .beyond-chapter-marker,
+.beyond-anim-ready .beyond-chapter-heading,
+.beyond-anim-ready .beyond-chapter-text {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.beyond-anim-ready .beyond-chapter.is-visible .beyond-chapter-marker { opacity: 1; transform: translateY(0); }
+.beyond-anim-ready .beyond-chapter.is-visible .beyond-chapter-heading { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.beyond-anim-ready .beyond-chapter.is-visible .beyond-chapter-text { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+
+/* Fotos: fade + leve escala (bem sutil, nunca um zoom exagerado) escalonado pela ordem no
+   HTML. É só um reveal de entrada — não segue scroll, não repete, dispara uma vez. */
+.beyond-anim-ready .beyond-photo {
+  opacity: 0;
+  transform: translateY(22px) scale(0.97);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.beyond-anim-ready .beyond-chapter.is-visible .beyond-photo { opacity: 1; transform: translateY(0) scale(1); }
+.beyond-anim-ready .beyond-gallery > .beyond-photo:nth-child(1) { transition-delay: 0.28s; }
+.beyond-anim-ready .beyond-gallery > .beyond-photo:nth-child(2) { transition-delay: 0.36s; }
+.beyond-anim-ready .beyond-gallery > .beyond-photo:nth-child(3) { transition-delay: 0.44s; }
+.beyond-anim-ready .beyond-gallery > .beyond-photo:nth-child(4) { transition-delay: 0.52s; }
+.beyond-anim-ready .beyond-gallery > .beyond-photo:nth-child(5) { transition-delay: 0.6s; }
+
+.beyond-chapter-head {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.6rem, 4vw, 3rem);
+}
+/* Marcador de capítulo: pequena régua + "Capítulo" discreto + número — como a folha de
+   rosto de um capítulo de livro, não um selo/badge grande chamando atenção sozinho. */
+.beyond-chapter-marker {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.beyond-chapter-marker::before {
+  content: "";
+  display: block;
+  width: 26px;
+  height: 1px;
+  margin-bottom: 0.9rem;
+  background: var(--color-skin);
+}
+.beyond-chapter-kicker {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+  margin-bottom: 0.3rem;
+}
+/* Número refinado: contorno fino, sem preenchimento — menor e mais discreto que antes,
+   um marcador editorial, não um card/badge grande. */
+.beyond-chapter-num {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 4.4vw, 3.4rem);
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(242, 238, 230, 0.4);
+}
+.beyond-chapter-heading {
+  padding-top: clamp(0.2rem, 1vw, 0.6rem);
+  border-left: 1px solid var(--color-hairline);
+  padding-left: clamp(1.6rem, 4vw, 3rem);
+}
+.beyond-chapter-title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  line-height: 1.15;
+  color: var(--color-white);
+}
+/* Badge de local + data: pílula discreta com ícones SVG inline (pino/calendário), dourado
+   reaproveitado (--color-skin, mesmo tom de process-number/studio-handle) — substitui a
+   linha de texto solto que existia antes. João Pessoa (capítulo 03) só tem o item de local
+   (sem inventar data), então o separador simplesmente não é renderizado nesse capítulo. */
+.beyond-chapter-meta {
+  margin-top: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 0.4rem;
+  gap: 0.7rem;
+  padding: 0.5rem 1.05rem;
+  border: 1px solid var(--color-hairline);
+  border-radius: 999px;
+  background: rgba(242, 238, 230, 0.03);
+}
+.beyond-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-skin);
+  white-space: nowrap;
+}
+.beyond-meta-icon { width: 14px; height: 14px; flex: none; }
+.beyond-meta-sep { width: 1px; height: 14px; background: var(--color-hairline); flex: none; }
+
+.beyond-chapter-text {
+  margin-top: clamp(1.8rem, 3.5vw, 2.6rem);
+  max-width: 60ch;
+  color: #e1dcd1;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+.beyond-inline-link { color: var(--color-bone); border-bottom: 1px solid var(--color-hairline); transition: color 0.3s ease, border-color 0.3s ease; }
+.beyond-inline-link:hover { color: var(--color-white); border-color: rgba(242, 238, 230, 0.5); }
+
+/* ---- Composição fotográfica: masonry REAL via CSS multi-column, sem cortes ----
+   columns:3 260px + break-inside:avoid em cada figure — o próprio navegador distribui as
+   fotos nas 3 colunas preenchendo de cima pra baixo, sem buracos, sem grid-template-areas
+   artesanal e sem JS. Cada <img> usa width:100%/height:auto (sem object-fit:cover, sem
+   altura fixa), então a proporção de cada foto continua exatamente a original — retrato
+   fica retrato, paisagem fica paisagem. Cada capítulo tem seu PRÓPRIO .beyond-gallery
+   (nunca misturado com o de outro capítulo). */
+.beyond-gallery {
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  columns: 3 260px;
+  column-gap: clamp(1.1rem, 2vw, 1.5rem);
+}
+.beyond-photo {
+  position: relative;
+  overflow: hidden;
+  break-inside: avoid;
+  margin-bottom: clamp(1.1rem, 2vw, 1.5rem);
+  background: var(--color-charcoal);
+  /* contain:layout é necessário aqui: sem isso, um filho position:absolute (a legenda)
+     dentro de um item de um container columns: (multi-column) pode ser posicionado de
+     forma incorreta pelo navegador por causa da fragmentação do multicol — contain:layout
+     força este item a ser seu próprio bloco de posicionamento, isolado do container pai. */
+  contain: layout;
+}
+.beyond-photo-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.beyond-photo-btn:focus-visible {
+  outline: 2px solid var(--color-skin);
+  outline-offset: 4px;
+}
+.beyond-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Toque bem leve (12% cinza) — fotos documentais/pessoais, não peças de portfólio; o
+     hover (abaixo) devolve a cor cheia e escurece um pouco pra legenda ficar legível. */
+  filter: grayscale(12%) contrast(1.03);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+/* Camada escura na base, só pra dar contraste à legenda — invisível em repouso. */
+.beyond-photo::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(5, 5, 4, 0.85), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.beyond-caption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.6rem 1.1rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+/* Hover/foco (mesmo comportamento em todas as fotos, sem exceção): zoom bem leve, cor
+   plena + leve escurecimento, legenda revelada. O item nunca muda de tamanho (o scale é só
+   na <img>, o <figure> continua com o mesmo box, então o masonry não se mexe). */
+@media (hover: hover) and (pointer: fine) {
+  .beyond-photo:hover img,
+  .beyond-photo-btn:focus-visible img {
+    transform: scale(1.03);
+    filter: grayscale(0%) contrast(1.04) brightness(0.9);
+  }
+  .beyond-photo:hover::after,
+  .beyond-photo:has(.beyond-photo-btn:focus-visible)::after { opacity: 1; }
+  .beyond-photo:hover .beyond-caption,
+  .beyond-photo-btn:focus-visible ~ .beyond-caption { opacity: 1; transform: translateY(0); }
+}
+/* Sem hover disponível (touch): legenda sempre visível, discreta — não há gesto de "passar
+   o mouse" num celular, então esconder a legenda permanentemente perderia a informação. */
+@media (hover: none) {
+  .beyond-photo::after { opacity: 1; height: 45%; }
+  .beyond-caption { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .beyond-gallery { columns: 2; }
+}
+
+@media (max-width: 640px) {
+  /* Mobile: uma coluna única, cada foto na ordem em que já está no HTML, sempre na sua
+     proporção original (sem aspect-ratio forçado, sem cortes). */
+  .beyond-gallery { columns: 1; gap: clamp(1.6rem, 5vw, 2.2rem); }
+
+  .beyond-chapters { padding-inline: clamp(1rem, 5vw, 1.5rem); }
+  .beyond-chapter-head { gap: 1.1rem; }
+  .beyond-chapter-marker::before { margin-bottom: 0.6rem; }
+  .beyond-chapter-num { font-size: clamp(1.8rem, 9vw, 2.4rem); }
+  .beyond-chapter-heading { padding-left: 1.1rem; }
+  .beyond-chapter-meta { border-radius: 14px; }
+  .beyond-chapter-text { margin-top: 1.6rem; }
+}
+
+/* =====================================================
+   ESTÚDIOS
+   ===================================================== */
+/* Preto puro (#000000) pedido explicitamente, igual a .sobre/.portfolio/.especialidade. */
+.estudios { background: #000000; }
+
+.studio-grid {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2rem);
+}
+
+.studio-card {
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-hairline);
+  border-radius: 12px;
+  padding: clamp(1.8rem, 3vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.4rem;
+  transition: border-color 0.35s ease;
+}
+.studio-card:hover { border-color: rgba(242, 238, 230, 0.22); }
+
+.studio-name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2.2vw, 1.65rem);
+  color: var(--color-white);
+}
+
+.studio-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  list-style: none;
+}
+.studio-location,
+.studio-handle {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--color-bone);
+  font-size: 0.92rem;
+}
+.studio-location svg,
+.studio-handle svg { flex-shrink: 0; color: var(--color-grey); }
+
+.studio-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 0.2rem;
+}
+/* Sobrescreve só DENTRO dos cards de estúdio — não mexe no .btn/.btn-primary/.btn-secondary
+   globais usados no resto do site (Hero, Contato, Instagram). */
+.studio-actions .btn {
+  width: 100%;
+  padding: 0.8rem 1.4rem;
+  font-size: 0.72rem;
+  border-radius: 8px;
+}
+
+/* =====================================================
+   INSTAGRAM
+   ===================================================== */
+/* Seção compacta de propósito: padding-block bem menor que o --section-pad padrão do
+   site (5-10rem), pra dar a sensação de bloco centralizado com bastante preto ao redor,
+   sem os intervalos verticais grandes do resto do site. */
+.instagram {
+  background: #000000;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.instagram-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  color: var(--color-white);
+}
+.instagram-handle svg { width: 0.62em; height: 0.62em; flex-shrink: 0; }
+
+.instagram .lede { margin-top: 0.85rem; }
+
+/* Botão preenchido/compacto só dentro desta seção — não mexe no .btn/.btn-primary
+   globais usados em Hero/Contato/Estúdios. text-transform:none é necessário porque o
+   .btn global é uppercase por padrão, e o texto precisa ficar "Ver Instagram", não
+   "VER INSTAGRAM". */
+.instagram .btn {
+  margin-top: 1.8rem;
+  min-width: 160px;
+  min-height: 50px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* =====================================================
+   CONTATO
+   ===================================================== */
+/* Fundo continua predominantemente preto (--color-ink, já quase-preto) — os dois
+   radial-gradient só quebram o "chapado" com luz/dourado extremamente sutis (opacidade
+   0.04-0.05), sem criar manchas. --color-skin é o mesmo tom "dourado" já usado em outros
+   detalhes do site (process-number, studio-handle etc.), reaproveitado aqui. */
+.contato {
+  background:
+    radial-gradient(ellipse 640px 420px at 18% 0%, rgba(242, 238, 230, 0.04), transparent 60%),
+    radial-gradient(ellipse 560px 380px at 85% 100%, rgba(185, 141, 111, 0.05), transparent 60%),
+    var(--color-ink);
+  border-top: 1px solid var(--color-hairline);
+}
+
+/* Estimador de orçamento (LOCAL -> PROJETO -> ESTIMATIVA -> WhatsApp). Tudo disparado por
+   clique (js/app.js) — nada ligado ao scroll. As opções são botões com aria-pressed e o estado
+   selecionado é estilizado direto por [aria-pressed="true"] (uma única fonte de verdade).
+   Linhas finas em vez de cards pesados; só branco/off-white e cinza, sem cor de destaque. Os
+   passos 2 e 3 nascem [hidden] e entram com uma transição curta de opacity + translateY (a
+   classe .is-enter é o estado "de partida", aplicada por 1 frame pelo JS). */
+.estimator {
+  width: 100%;
+  max-width: 58rem;
+  margin: clamp(3rem, 6vw, 4.5rem) auto 0;
+}
+.est-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  scroll-margin-top: 110px;
+  scroll-margin-bottom: 32px;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.est-step[hidden] { display: none; }
+.est-step.is-enter { opacity: 0; transform: translateY(14px); }
+.est-step + .est-step { margin-top: clamp(3.2rem, 7vw, 5rem); }
+
+.est-step-label {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+.est-step-title {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+/* ---- Passo 1: estúdio ---- */
+.est-studios {
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+  width: 100%;
+  max-width: 46rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+}
+.est-studio {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  min-height: 5.6rem;
+  padding: 1.5rem 3rem 1.4rem 1.6rem;
+  text-align: left;
+  border: 1px solid var(--color-hairline);
+  border-radius: 10px;
+  transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.3s ease;
+}
+.est-studio::after {
+  content: "";
+  position: absolute;
+  top: 1.55rem;
+  right: 1.5rem;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(242, 238, 230, 0.32);
+  border-radius: 50%;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.est-studio-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 1.9vw, 1.3rem);
+  line-height: 1.2;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+.est-studio-place {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+.est-studio[aria-pressed="true"] {
+  border-color: rgba(242, 238, 230, 0.85);
+  background: rgba(242, 238, 230, 0.05);
+}
+.est-studio[aria-pressed="true"]::after { background: var(--color-white); border-color: var(--color-white); }
+.est-studio:active { transform: scale(0.992); }
+
+/* ---- Passo 2: projeto (lista editorial em linhas finas) ---- */
+.est-projects {
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+  width: 100%;
+  max-width: 52rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  text-align: left;
+}
+.est-project {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.6rem;
+  padding: 1rem 0.1rem;
+  text-align: left;
+  font-size: 1.02rem;
+  line-height: 1.3;
+  color: var(--color-bone);
+  border-bottom: 1px solid var(--color-hairline);
+  transition: color 0.4s ease, border-color 0.4s ease;
+}
+.est-project:nth-child(-n+2) { border-top: 1px solid var(--color-hairline); }
+.est-project::after {
+  content: "";
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border: 1px solid rgba(242, 238, 230, 0.3);
+  border-radius: 50%;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+.est-project[aria-pressed="true"] { color: var(--color-white); border-bottom-color: rgba(242, 238, 230, 0.55); }
+.est-project[aria-pressed="true"]::after { background: var(--color-white); border-color: var(--color-white); }
+
+@media (hover: hover) and (pointer: fine) {
+  .est-studio:hover { border-color: rgba(242, 238, 230, 0.4); background: rgba(242, 238, 230, 0.025); }
+  .est-studio[aria-pressed="true"]:hover { border-color: rgba(242, 238, 230, 0.9); background: rgba(242, 238, 230, 0.06); }
+  .est-studio:hover::after { border-color: rgba(242, 238, 230, 0.6); }
+  .est-project:hover { color: var(--color-white); border-bottom-color: rgba(242, 238, 230, 0.35); }
+  .est-project:hover::after { border-color: rgba(242, 238, 230, 0.6); }
+}
+
+/* ---- Passo 3: estimativa ---- */
+.est-result {
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.est-result.is-refresh { animation: est-refresh 0.55s ease both; }
+@keyframes est-refresh {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.est-result-studio {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+}
+.est-result-project {
+  margin-top: 0.7rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.35rem, 2.6vw, 1.85rem);
+  line-height: 1.2;
+  color: var(--color-bone);
+}
+/* O preço é o maior elemento da seção. Faixa = duas partes (nowrap cada) que só podem
+   quebrar de linha ENTRE elas, então "R$ 1.900 — R$ 2.500" nunca parte no meio de um valor. */
+.est-price {
+  margin-top: clamp(1.3rem, 3vw, 2rem);
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.8rem, 9vw, 5.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+.est-price--range { font-size: clamp(2.1rem, 6.8vw, 4.4rem); }
+.est-price-part { display: inline-block; white-space: nowrap; }
+.est-price-sep { color: var(--color-grey); }
+.est-note {
+  margin-top: 1.6rem;
+  max-width: 44ch;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--color-grey);
+}
+.est-actions {
+  margin-top: clamp(1.8rem, 4vw, 2.4rem);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.est-cta {
+  min-width: 15rem;
+  min-height: 3.4rem;
+  padding: 1rem 2.6rem;
+  border-radius: 8px;
+}
+.est-change { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.6rem; }
+.est-link {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.15rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-grey);
+  border-bottom: 1px solid transparent;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+.est-link:hover { color: var(--color-white); border-bottom-color: rgba(242, 238, 230, 0.35); }
+
+/* Texto só para leitores de tela (anúncio da estimativa quando ela muda). */
+.est-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- Alternativa: falar direto pelo WhatsApp ---- */
+.est-direct {
+  margin-top: clamp(3.5rem, 8vw, 5.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.est-direct-line { display: block; width: 60px; height: 1px; background: var(--color-hairline); margin-bottom: 2rem; }
+.est-direct-text { font-size: 0.95rem; line-height: 1.6; color: var(--color-grey); }
+.est-direct-text span { color: var(--color-bone); }
+.est-direct-link {
+  margin-top: 1.3rem;
+  min-height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+  border: 1px solid rgba(242, 238, 230, 0.22);
+  border-radius: 8px;
+  transition: border-color 0.35s ease, background-color 0.35s ease;
+}
+.est-direct-link svg { flex: none; color: var(--color-bone); }
+.est-direct-link:hover { border-color: rgba(242, 238, 230, 0.55); background: rgba(242, 238, 230, 0.04); }
+
+@media (max-width: 640px) {
+  .est-studios,
+  .est-projects { grid-template-columns: 1fr; }
+  .est-project:nth-child(2) { border-top: 0; }
+  .est-studio { min-height: 5rem; padding: 1.3rem 2.8rem 1.2rem 1.3rem; }
+  .est-cta { width: 100%; min-width: 0; }
+}
+@media (max-width: 400px) {
+  .est-cta { padding-inline: 1rem; letter-spacing: 0.1em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .est-step, .est-studio, .est-project { transition: none; }
+  .est-result.is-refresh { animation: none; }
+}
+/* =====================================================
+   FOOTER
+   ===================================================== */
+/* Rodapé simplificado numa única faixa: marca | 3 links | copyright — em vez do antigo
+   grid de 3 colunas com nav de 6 itens + bloco de contato + segunda faixa de copyright. */
+.site-footer {
+  background: var(--color-black);
+  border-top: 1px solid var(--color-hairline);
+  padding-block: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.2rem 2rem;
+}
+
+.footer-nav { display: flex; flex-wrap: wrap; gap: 1.6rem; }
+.footer-nav a { color: var(--color-bone); font-size: 0.88rem; }
+.footer-nav a:hover { color: var(--color-white); }
+
+.footer-copy { color: var(--color-grey-dim); font-size: 0.78rem; }
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 1024px) {
+  /* Sobre: empilha em coluna única, foto primeiro (ordem natural do HTML) e texto abaixo.
+     A foto continua com destaque (até 30rem de largura, centralizada), limitada também a
+     ~72% da altura da viewport para não passar da tela em aparelhos baixos/deitados. */
+  .artist-layout { grid-template-columns: 1fr; row-gap: 2.5rem; }
+  .artist-photo-col { grid-column: 1; max-width: min(100%, 30rem, calc(72vh * 0.631)); }
+  .artist-text-col { grid-column: 1; }
+  .artist-highlights { max-width: none; }
+
+  /* Com 2 colunas os 4 quadros da imagem não batem mais 1-para-1 com o grid — solta o
+     aspect-ratio da seção inteira (só faz sentido com 4 colunas) e cai para cover puro.
+     .process-grid volta a ficar em fluxo normal (não mais position:absolute/inset:0) aqui:
+     sem a exigência de bater quadro-a-quadro, é melhor deixar a altura da seção acompanhar
+     o conteúdo empilhado (nunca corta texto) do que travar a grid nos 100% fixos da seção.
+     min-height só garante um piso para a foto não ficar baixa demais com pouco conteúdo.
+     Continua a MESMA imagem única, só recortada de outro jeito. */
+  .process-section { aspect-ratio: auto; min-height: 70vh; }
+  .process-grid {
+    position: static;
+    inset: auto;
+    height: auto;
+    padding-top: clamp(7rem, 14vh, 10rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.5rem;
+  }
+  /* Aqui o item não fica mais dentro de uma caixa do tamanho da foto (.process-grid virou
+     fluxo normal acima) — o padding-bottom gigante do desktop (pra subir o texto pra dentro
+     da foto) não faz sentido mais e só criaria um vão vazio embaixo de cada bloco. */
+  .process-item { padding-bottom: 0; }
+}
+
+/* Correção específica de "O Processo" no TABLET (769px-1024px, faixa isolada, não mexe no
+   mobile ≤768px nem no desktop >1024px). O breakpoint de 1024px logo acima já solta o
+   aspect-ratio da seção e passa .process-grid pra fluxo normal (position:static, 2
+   colunas), mas .process-inner e .process-header ficavam de fora — os dois continuavam
+   position:absolute + inset:0/top:clamp(...)/translateY(-80px), pensados pro box EXATO da
+   foto do desktop (aspect-ratio travado, altura fixa). Numa seção sem mais altura travada
+   nessa faixa, isso fazia o título "O Processo" flutuar por cima da própria grid em vez de
+   ficar acima dela — a sobreposição com "02 Projeto" relatada na auditoria. Mesma solução
+   já usada no mobile (bloco @media max-width:768px logo abaixo, intocado): os dois passam
+   a fluir normalmente, um acima do outro, na ordem natural do HTML. Não mexe na imagem de
+   fundo (continua exibida, só o aspect-ratio já solto pelo bloco de 1024px acima) nem no
+   SVG dos filetes de luz (position:absolute/inset:0 cobrindo a seção do jeito que ela
+   estiver, como sempre). */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .process-inner {
+    position: static;
+    inset: auto;
+    transform: none;
+    padding-block: clamp(3rem, 6vw, 4.5rem) clamp(2rem, 4vw, 3rem);
+  }
+  .process-header {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: auto;
+    max-width: none;
+    text-align: center;
+    padding-inline: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+  /* O padding-top do bloco de 1024px reservava espaço pro header ABSOLUTO por cima da
+     grid; com o header em fluxo normal agora (acima, com seu próprio margin-bottom), esse
+     respiro já existe sozinho — zerar aqui evita um vão duplicado entre título e grid. */
+  .process-grid { padding-top: 0; }
+}
+
+@media (max-width: 860px) {
+  .main-nav { display: none; }
+  .nav-toggle { display: flex; }
+  .btn-header { display: none; }
+
+  /* No mobile o vídeo continua sendo o fundo em tela cheia do Hero (mesmo
+     position:absolute + object-fit:cover do desktop) — só os elementos puramente
+     decorativos que ficariam apertados numa tela estreita somem, para manter o
+     foco em vídeo + texto + CTAs. Ajuste object-position aqui se a máquina/tatuagem
+     ficar cortada em telas muito estreitas. */
+  .hero-side--right,
+  .hero-statement,
+  .scroll-cue {
+    display: none;
+  }
+
+  .main-nav.is-open {
+    display: flex;
+    position: fixed;
+    inset: 84px 0 0 0;
+    background: var(--color-black);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 90;
+  }
+  .main-nav.is-open a { font-size: 1.1rem; }
+
+  .feature-item { grid-template-columns: 50px 1fr; }
+  .feature-desc { grid-column: 2 / -1; margin-top: 0.3rem; }
+
+  .narrative-act,
+  .narrative-act--reverse {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-block: 2.5rem;
+  }
+  .narrative-act .narrative-media,
+  .narrative-act--reverse .narrative-media { order: 1; aspect-ratio: 4 / 5; }
+  .narrative-act .narrative-caption,
+  .narrative-act--reverse .narrative-caption {
+    order: 2;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
+/* Correção específica de "O Processo" no celular. O breakpoint de 1024px logo acima já
+   solta o aspect-ratio da seção e passa .process-grid pra fluxo normal (position:static),
+   mas deixava .process-inner e .process-header de fora — os dois continuavam
+   position:absolute + inset:0/top:clamp(...) pensados pro box EXATO da foto no desktop
+   (com o translateY(-80px) que só faz sentido dentro daquele box fixo). Numa seção que já
+   não tem mais altura travada, isso faz o título flutuar por cima da própria grid em vez de
+   ficar acima dela, exatamente a sobreposição do print. Aqui os dois passam a fluir
+   normalmente também — um acima do outro, na ordem natural do HTML — e a altura de
+   .process-section (min-height dos breakpoints acima, um PISO, não um teto) passa a
+   acompanhar o conteúdo de verdade, sem cortar nem sobrepor nada. Nada aqui toca no SVG dos
+   filetes de luz (continua position:absolute/inset:0 cobrindo a seção do jeito que ela
+   estiver, exatamente como no desktop) nem em qualquer regra acima de 768px. */
+@media (max-width: 768px) {
+  .process-inner {
+    position: static;
+    inset: auto;
+    transform: none;
+    padding-block: clamp(2.75rem, 9vw, 4rem) clamp(2rem, 6vw, 3rem);
+  }
+  .process-header {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: auto;
+    max-width: none;
+    padding-inline: clamp(1.25rem, 5vw, 2rem);
+    margin-bottom: clamp(2rem, 7vw, 3rem);
+  }
+  /* O padding-top do breakpoint de 1024px reservava espaço pro header ABSOLUTO por cima da
+     grid; com o header em fluxo normal agora (acima, com seu próprio margin-bottom), esse
+     respiro já existe sozinho — zerar aqui evita um vão duplicado entre título e grid. */
+  .process-grid { padding-top: 0; }
+
+  /* A imagem (processo-bg.png) é aplicada só via background-image em .process-section —
+     não existe <img>, ::before/::after nem outra camada visual pra essa foto. No mobile ela
+     simplesmente deixa de ser exibida (background-image:none; o arquivo continua intacto,
+     só não é mais pedido/renderizado nessa faixa) e a seção vira preto sólido explícito —
+     não depende de "vazar" a cor do body por trás. Isso não mexe em .process-overlay (o
+     gradiente escurecedor, agora só sobre preto, fica imperceptível — inofensivo, não
+     precisa ser removido) nem no SVG dos filetes de luz: com mix-blend-mode:screen sobre
+     fundo preto sólido, os filetes continuam aparecendo exatamente iguais (screen sobre
+     preto = a cor do próprio filete, sem alteração), tocando sozinhos, sem scroll. */
+  .process-section {
+    background-image: none;
+    background-color: var(--color-black);
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner { height: 68px; }
+  .process-section { min-height: 60vh; }
+  .process-grid { grid-template-columns: 1fr; row-gap: 2.5rem; }
+  .process-item { min-height: 15vh; }
+  .studio-grid { grid-template-columns: 1fr; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-nav { justify-content: center; }
+  .hero-ctas { flex-direction: column; width: 100%; }
+  .hero-ctas .btn { width: 100%; }
+}

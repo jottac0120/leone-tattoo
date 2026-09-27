@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Página não encontrada | Leone Tattoo</title>
+<meta name="description" content="A página que você procurou não existe ou foi movida. Volte para o início do site da Leone Tattoo.">
+<!-- 404 nunca deve aparecer no Google: noindex. O servidor também precisa responder com status
+     HTTP 404 para esta página (GitHub Pages, Netlify, Vercel e Cloudflare Pages fazem isso
+     sozinhos quando o arquivo se chama 404.html na raiz). -->
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#0a0a09">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Caminhos com "/" na frente: esta página é servida em qualquer URL inexistente (ex.: /foo/bar),
+     então caminhos relativos quebrariam. -->
+<link rel="stylesheet" href="/css/style.css">
+<style>
+  .notfound { min-height: 100vh; display: grid; place-items: center; padding: 2rem var(--container-pad); text-align: center; }
+  .notfound-inner { display: flex; flex-direction: column; align-items: center; }
+  .notfound .logo { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .notfound .lede { margin-bottom: 2.2rem; }
+</style>
+</head>
+<body>
+<main class="notfound">
+  <div class="notfound-inner">
+    <a href="/" class="logo">LEONE<span>TATTOO</span></a>
+    <span class="label">Erro 404</span>
+    <h1 class="section-title">Página não encontrada</h1>
+    <p class="lede lede--center">O endereço que você tentou acessar não existe ou foi movido.</p>
+    <a href="/" class="btn btn-primary">Voltar ao início</a>
+  </div>
+</main>
+</body>
+</html>
