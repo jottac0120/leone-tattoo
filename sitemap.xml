@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Sitemap — Leone Tattoo. Site de página única: a única URL indexável é a home (as seções
-     #sobre, #portfolio etc. são âncoras da mesma página, não URLs separadas). 404.html não entra.
-     ATENÇÃO: troque https://DOMINIO-DO-SITE.com pelo domínio oficial antes de publicar. -->
+     #sobre, #portfolio etc. são âncoras da mesma página, não URLs separadas). 404.html não entra. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://DOMINIO-DO-SITE.com/</loc>
+    <loc>https://leone-tattoo.vercel.app/</loc>
     <lastmod>2026-09-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/hero/hero-scene.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/artist/pratrick%20leone.png</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/01.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/02.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/03.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/04.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/05.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/06.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/07.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/08.jpg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/09.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/10.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/11.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/12.jpeg</image:loc></image:image>
-    <image:image><image:loc>https://DOMINIO-DO-SITE.com/assets/works/13.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/hero/hero-scene.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/artist/pratrick%20leone.png</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/01.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/02.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/03.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/04.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/05.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/06.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/07.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/08.jpg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/09.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/10.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/11.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/12.jpeg</image:loc></image:image>
+    <image:image><image:loc>https://leone-tattoo.vercel.app/assets/works/13.jpeg</image:loc></image:image>
   </url>
 </urlset>

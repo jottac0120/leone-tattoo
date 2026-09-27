@@ -1,8 +1,7 @@
 # robots.txt — Leone Tattoo
 # Site público de página única: nada é bloqueado (CSS, JS, imagens e vídeo ficam liberados
 # para o Google renderizar a página corretamente). Não existem áreas administrativas.
-# ATENÇÃO: troque https://DOMINIO-DO-SITE.com pelo domínio oficial antes de publicar.
 User-agent: *
 Allow: /
 
-Sitemap: https://DOMINIO-DO-SITE.com/sitemap.xml
+Sitemap: https://leone-tattoo.vercel.app/sitemap.xml
